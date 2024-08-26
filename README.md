@@ -13,10 +13,9 @@
 
 > 构建时需要编辑tailwind.config.js，构建前台还是后台
 
-后台构建
-`npx tailwindcss -i ./tailwind.css -o ./vue/public/static/admin.css`
-前台构建
-`npx tailwindcss -i ./tailwind.css -o ./app/static/main.css`
+后台构建`npx tailwindcss -i ./tailwind.css -o ./vue/public/static/admin.css`
+
+前台构建`npx tailwindcss -i ./tailwind.css -o ./app/static/main.css`
 
 ```
 项目目录
@@ -93,12 +92,19 @@ www.abc.cn {
 
 ### 常用命令
 `sudo systemctl daemon-reload` 刷新系统启动配置
+
 `sudo systemctl start blog` 启动
+
 `sudo systemctl restart blog` 重启
+
 `sudo systemctl status blog` 查看运行
+
 `sudo systemctl stop blog` 停止
+
 `sudo systemctl enable blog` 开机自启动
+
 `sudo systemctl disable blog`   禁止自启动
+
 `sudo journalctl -u blog.service -r` 查看错误
 
 
