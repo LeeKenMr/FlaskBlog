@@ -14,7 +14,7 @@ class DataConfig(object):
 
 #管理员配置
 class AdminConfig(object):
-    username = '' #用户名
-    password = '' #密码
+    username = 'admin' #用户名
+    password = 'admin' #密码
 
    
