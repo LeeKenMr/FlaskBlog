@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{data.title}} - 大木编程{% endblock %}
+{% block css %}
+<link href="/static/prism.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<style>
+    .markedwon h1 {
+        font-weight: 550;
+        font-size: 1.6em;
+    }
+    
+    .markedwon h2 {
+        font-weight: 550;
+        font-size: 1.4em;
+    }
+    
+    .markedwon h3 {
+        font-weight: 550;
+        font-size: 1.2em;
+    }
+    
+    .markedwon h4 {
+        font-weight: 550;
+        font-size: 1em;
+    }
+    
+    .markedwon a {
+        color: rgb(53, 101, 233);
+    }
+    
+    .markedwon ul li {
+        list-style-type: disc;
+        margin-left: 1.5em;
+    }
+    
+    /* p标签间距，排除blockquote下的p标签 */
+    .markedwon p:not(blockquote p) {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+    
+    /* > 的样式 */
+    .markedwon blockquote {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        padding-left: 1em;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        border-left: 3px solid rgb(182, 204, 241);
+        background-color: rgb(230, 230, 230);
+    }
+    
+    
+    /* 自定义` `的样式 */
+    .markedwon code:not(pre code) {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 0.375rem;
+        background-color: #f3f0eb;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+        font-size: 14px;
+        line-height: 1rem;
+        font-weight: 500;
+        color: rgb(75 85 99 / var(--tw-text-opacity));
+    }
+    /* 设置代码块的样式 */
+    .markedwon pre {
+      border-radius: 0.8rem; /* 设置圆角 */
+    }
+    </style>
+        <div class="mx-auto max-w-7xl px-0 lg:px-8 markedwon">
+            {{data.content | safe}}
+        </div>
+{% endblock %}

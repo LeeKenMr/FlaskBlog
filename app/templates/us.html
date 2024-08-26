@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}关于大木编程{% endblock %}
+{% block content %}
+<style>
+  .jbs {
+    background: linear-gradient(to right, #ff7e5f, #3240b9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      border-color: transparent;
+    }
+
+    50% {
+      border-color: orange;
+    }
+  }
+</style>
+<div class="mx-auto px-3 lg:px-8 flex flex-col items-center max-w-xl">
+      <img class="h-24 w-24 rounded-full bg-gray-50" src="/static/user.jpg" alt="">
+      <span class="mt-3 leading-6 font-semibold" aria-hidden="true">大木</span>
+      <p class="mt-2 text-lg leading-8 text-gray-600 jbs border-b border-gray-300" v-text="displayedText" @vue:mounted="mounted"></p>
+      <p class="mt-6 text-gray-500 leading-loose border-b border-gray-300">一名全栈程序员<br>
+        语言：Python、Golang、javasrcipt<br>
+        框架：Gin、Django、Flask、uni-app、vue3、TailwindCSS<br>
+        数据库：PostgreSQL、MongoDB、Redis、Gorm、Peewee<br>
+        其他技能：Linux、Nginx、Git、区块链<br>
+        我能做的：响应式网站前后端、微信小程序、android APP、iOS APP、服务器部署<br>
+        邮箱：drweb.co@gmail.com<br>
+        VX: sombaocom
+      </p>
+      <p class="mt-6 text-gray-500">
+        此博客基于Flask编写，代码托管在<a href="https://www.github.com/caominli">github</a>
+      </p>
+</div>
+  {% endblock %}
+    {% block js %}
+    displayedText: "",
+    txtArr: [],
+    fullText2: "我讨厌编程，编程枯燥无味",
+    fullText: "爱编程，编程使我快乐",
+    isSecondText: true, // 是否循环
+    getRandomTime() {
+      return Math.random() * 0.5;
+    },
+    modifyTxt(txt) {
+      this.displayedText = txt;
+    },
+    writeOut(txtArr, curChar = 0) {
+      const randomTime = this.getRandomTime();
+      setTimeout(() => {
+        let elTxt = this.displayedText;
+        elTxt += txtArr[curChar];
+        this.modifyTxt(elTxt);
+        if (curChar + 1 === txtArr.length) {
+          //延迟1.5秒
+          setTimeout(() => {
+            this.deleteOut(txtArr, txtArr.length);
+          }, 1500);
+          return
+        }
+        return this.writeOut(txtArr, curChar + 1);
+      }, randomTime * 1000);
+    },
+    deleteOut(txtArr, curChar = 0) {
+      const randomTime = this.getRandomTime();
+      setTimeout(() => {
+        if (this.isSecondText) {
+          let elTxt = this.displayedText;
+          const elTxtArr = elTxt.split("");
+          const elTxtArrLen = elTxtArr.length;
+          const newElTxt = elTxtArr.splice(0, curChar - 1).join("");
+          this.modifyTxt(newElTxt);
+          if (elTxtArrLen === 2) {
+              // 切换文本内容并显示 fullText
+              this.txtArr = this.fullText.split("");
+              this.isSecondText = false; // 设置为停止
+              return this.writeOut(this.txtArr, 0);
+          }
+          return this.deleteOut(txtArr, elTxtArrLen - 1);
+        } else {
+          // 停止，不再循环
+          return;
+        }
+
+      }, randomTime * 1000);
+    },
+    mounted() {
+      this.txtArr = this.fullText2.split("");
+      this.writeOut(this.txtArr);
+    }
+    {% endblock %}
