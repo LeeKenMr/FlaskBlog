@@ -12,6 +12,14 @@
 - psycopg2-binary
 - gunicorn
 
+
+## 试运行
+后端运行:直接运行run.py
+后台管理员运行:
+`cd vue`
+`npm install`
+`npm run dev`
+
 ## tailwindcss构建
 
 > 构建时需要编辑tailwind.config.js，构建前台还是后台
@@ -45,6 +53,7 @@
 为应用下面创建一个虚拟python环境
 在blog目录下创建一个jingtai文件夹
 然后static目录放置在jingtai下
+将后台vue构建的文件上传到jingtai文件夹
 
 1. `python3 -m venv /home/blog/venv` 创建虚拟环境
 2. `source /home/blog/venv/bin/activate` 激活
