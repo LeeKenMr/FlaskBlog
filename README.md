@@ -1,4 +1,4 @@
-# flask手脚架说明
+# flask简易博客
 
 ## 使用到的环境
 数据库:`sudo apt-get install postgresql-14`
