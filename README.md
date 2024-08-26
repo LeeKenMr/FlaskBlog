@@ -1,5 +1,8 @@
 # flask简易博客
 
+- 响应式tailwindcss，前端使用SSR渲染对搜索引擎友好
+- 数据库:PostgreSQL+peewee
+
 ## 使用到的环境
 数据库:`sudo apt-get install postgresql-14`
 需要pip安装的python包:
