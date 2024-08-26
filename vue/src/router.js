@@ -17,4 +17,14 @@ const router = createRouter({ //创建路由
     routes, //路由，由之前的数组变量作为参数
 });
 
+//导航守卫，存储桶必须有token，否则跳转到登录页面
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+    if (to.path === '/admin/login' || to.path === '/admin/logout' || token) {
+        next();
+    } else {
+        next('/admin/login');
+    }
+});
+
 export default router //返回这个路由被调用

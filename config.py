@@ -6,15 +6,15 @@ class Config(object):
 
 #数据库配置
 class DataConfig(object):
-    name = 'blog' #数据库名
-    user = 'mymuzixin' #用户名
-    password = 'Mzx16838638' #密码
+    name = '' #数据库名
+    user = '' #用户名
+    password = '' #密码
     host = 'localhost' #主机
     port = 5432 #端口
 
 #管理员配置
 class AdminConfig(object):
-    username = 'muxiaoliang' #用户名
-    password = 'banban123' #密码
+    username = '' #用户名
+    password = '' #密码
 
    
