@@ -1,7 +1,7 @@
 #配置文件
 class Config(object):
-    DEBUG = False #是否调试模式
-    SECRET_KEY = 'BxBp_0LdE2xbqFQp1pLguHL8MvtwGSKEPj4P8g6faBM=' #密钥
+    DEBUG = True #是否调试模式
+    SECRET_KEY = '' #密钥
 
 
 #数据库配置
