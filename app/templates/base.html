@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN" class="h-full bg-white">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,240 +9,271 @@
   <title>{% block title %}大木编程{% endblock %}</title>
 </head>
 <body class="h-full">
-<div>
-  <!-- 移动端 -->
-  <div :hidden="isHidden" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
-
-    <div class="fixed inset-0 bg-gray-900/80"></div>
-
-    <div class="fixed inset-0 flex">
-
-      <div class="relative mr-16 flex w-full max-w-xs flex-1">
-        
-        <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-          <button @click="isHidden = true" type="button" class="-m-2.5 p-2.5">
-            <span class="sr-only">关闭</span>
-            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
-          <nav class="flex flex-1 flex-col">
-            <ul role="list" class="flex flex-1 flex-col gap-y-7">
-              <li>
-                <ul role="list" class="-mx-2 space-y-1">
-                  <li>
-                    <a href="/" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                      </svg>首页
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/go/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      Golang
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/py/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      Python
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/qd/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      前端
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/uni/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      uni-app
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/db/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      数据库
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/ser/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      运维部署
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/ai/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                     人工智能
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/chain/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                     区块链
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/type/tools/1" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                     工具软件
-                    </a>
-                  </li>
-                  <li class="border-t border-gray-600">
-                    <a href="/us" class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                      关于我
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 桌面端 -->
-  <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-44 lg:flex-col">
-    
-    <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
-
-      <nav class="flex flex-1 flex-col">
-        <ul role="list" class="flex flex-1 flex-col gap-y-7">
-          <li>
-            <ul role="list" class="-mx-2 space-y-1">
-              <li class="border-b border-gray-600">
-                <a href="/" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"></path>
-                  </svg>首页
-                </a>
-              </li>
-              <li>
-                <a href="/type/go/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  Golang
-                </a>
-              </li>
-              <li>
-                <a href="/type/py/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  Python
-                </a>
-              </li>
-              <li>
-                <a href="/type/qd/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  前端
-                </a>
-              </li>
-              <li>
-                <a href="/type/uni/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  uni-app
-                </a>
-              </li>
-              <li>
-                <a href="/type/db/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                 数据库
-                </a>
-              </li>
-              <li>
-                <a href="/type/ser/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  运维部署
-                </a>
-              </li>
-              <li>
-                <a href="/type/ai/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  人工智能
-                </a>
-              </li>
-              <li>
-                <a href="/type/chain/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  区块链
-                </a>
-              </li>
-              <li>
-                <a href="/type/tools/1" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  工具软件
-                </a>
-              </li>
-            </ul>
-          </li>
-
-          <li class="border-t border-gray-600">
-            <ul role="list" class="-mx-2 mt-2 space-y-1">
-              <li>
-                <a href="/us" class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
-                  关于我
-                </a>
-              </li>
-              <li>
-                <div class="flex-1">
-                  <div class="mx-auto">
-                    <form method="GET" action="/so">
-                      <div class="group relative">
-                        <input type="text" name="so" class="block flex-initial w-28 rounded-full py-0 pl-10 bg-gray-200/70 text-black" placeholder="搜文章"/>
-                        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-500">
-                          <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-                            <path fill-rule="evenodd"
-                              d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                              clip-rule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </li>
-
-          <li class="-mx-6 mt-auto" data-nosnippet>
-            <span class="text-gray-400 group flex justify-center gap-x-3 rounded-md text-xs">2024 © usmm.cn</span>
-            <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" class="text-gray-400 group flex justify-center gap-x-3 rounded-md pb-4 text-xs">
-              粤ICP备2023081587号-1
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-  
-  <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
-    <button @click="isHidden = false" type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden">
-      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-    </button>
-    <div class="flex-1">
-      <div class="mx-auto">
-        <form method="GET" action="/so">
-          <div class="group relative">
-            <input type="text" name="so" class="block flex-initial w-28 rounded-full py-0 pl-10 bg-gray-200/70 text-black" placeholder="搜文章"/>
-            <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-500">
-              <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
-                <path fill-rule="evenodd"
-                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                  clip-rule="evenodd" />
+  <div>
+    <!-- 移动端隐藏 -->
+    <div :hidden="isHidden" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
+      <div class="fixed inset-0 bg-gray-900/80"></div>
+      <div class="fixed inset-0 flex">
+        <div class="relative mr-16 flex w-full max-w-xs flex-1">
+          <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
+            <button @click="isHidden = true" type="button" class="-m-2.5 p-2.5">
+              <span class="sr-only">关闭</span>
+              <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-            </div>
+            </button>
           </div>
-        </form>
+          <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
+            <nav class="flex flex-1 flex-col">
+              <ul role="list" class="flex flex-1 flex-col gap-y-7">
+                <li>
+                  <ul role="list" class="-mx-2 space-y-1">
+                    <li>
+                      <a href="/"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" aria-hidden="true">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                        </svg>首页
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/go/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        Golang
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/py/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        Python
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/qd/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        前端
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/uni/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        uni-app
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/db/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        数据库
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/ser/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        运维部署
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/ai/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        人工智能
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/chain/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        区块链
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/type/tools/1"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        工具软件
+                      </a>
+                    </li>
+                    <li class="border-t border-gray-600">
+                      <a href="/us"
+                        class="text-gray-400 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                        关于我
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+              </ul>
+            </nav>
+          </div>
+        </div>
       </div>
     </div>
-
+    <!-- 移动端顶部导航 -->
+    <div class="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden">
+      <button @click="isHidden = false" type="button" class="-m-2.5 p-2.5 text-gray-400 lg:hidden">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+      <div class="flex-1">
+        <div class="mx-auto">
+          <form method="GET" action="/so">
+            <div class="group relative">
+              <input type="text" name="so"
+                class="block flex-initial w-28 rounded-full py-0 pl-10 bg-gray-200/70 text-black" placeholder="搜文章" />
+              <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-500">
+                <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                  <path fill-rule="evenodd"
+                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                    clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- 主内容区 -->
+    <main class="py-10"> <!-- 将lg:pl-72改为lg:pr-72，内容区域右侧留白 -->
+      <div class="px-4 sm:px-6 lg:px-8">
+        {% block content %}
+        内容
+        {% endblock %}
+      </div>
+    </main>
+    <!-- 桌面端导航 -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:right-0 lg:z-50 lg:flex lg:w-44 lg:flex-col"> <!-- 添加lg:right-0固定在右侧 -->
+      <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
+        <nav class="flex flex-1 flex-col">
+          <ul role="list" class="flex flex-1 flex-col gap-y-7">
+            <li>
+              <ul role="list" class="-mx-2 space-y-1">
+                <li class="border-b border-gray-600">
+                  <a href="/"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    <svg class="h-5 w-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                      stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25">
+                      </path>
+                    </svg>
+                    首页
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/go/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    Golang
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/py/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    Python
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/qd/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    前端
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/db/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    uni-app
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/uni/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    数据库
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/ser/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    运维部署
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/ai/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    人工智能
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/chain/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    区块链
+                  </a>
+                </li>
+                <li>
+                  <a href="/type/tools/1"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    工具软件
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="border-t border-gray-600">
+              <ul role="list" class="-mx-2 mt-2 space-y-1">
+                <li>
+                  <a href="https://tool.usmm.cn"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    工具箱
+                  </a>
+                </li>
+				<li>
+                  <a href="/us"
+                    class="text-gray-300 hover:text-white hover:bg-gray-800 group flex gap-x-3 rounded-md p-2 text-sm leading-6">
+                    联系
+                  </a>
+                </li>
+                <li>
+                  <div class="flex-1">
+                    <div class="mx-auto">
+                      <form method="GET" action="/so">
+                        <div class="group relative">
+                          <input type="text" name="so"
+                            class="block flex-initial w-28 rounded-full py-0 pl-10 bg-gray-200/70 text-black"
+                            placeholder="搜文章" />
+                          <div
+                            class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-500">
+                            <svg viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4">
+                              <path fill-rule="evenodd"
+                                d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                                clip-rule="evenodd" />
+                            </svg>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="-mx-6 mt-auto" data-nosnippet>
+              <span class="text-gray-400 group flex justify-center gap-x-3 rounded-md text-xs">2025 © usmm.cn</span>
+              <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank"
+                class="text-gray-400 group flex justify-center gap-x-3 rounded-md pb-4 text-xs">
+                粤ICP备2023081587号-1
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
   </div>
-
-  <main class="py-10 lg:pl-72">
-  <div class="px-4 sm:px-6 lg:px-8">
-    {% block content %}
-		内容
-		{% endblock %}
-
-</div>
-</main>
-</div>
-<script src="/static/petite-vue.js"></script>
-<script>
-  PetiteVue.createApp({
+  <script src="/static/petite-vue.js"></script>
+  <script>
+    PetiteVue.createApp({
       isHidden: true,
       {% block js %}{% endblock %}
   }).mount();
-  
-</script>
+
+  </script>
 </body>
+
 </html>

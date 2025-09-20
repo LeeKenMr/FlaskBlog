@@ -1,14 +1,14 @@
 #这里是初始化设置，包括创建app实例，注册蓝图，配置app，配置peewee
 from flask import Flask
 from flask_jwt_extended import JWTManager
-from config import Config
+import env
 from .views import view
 from .api import api
 from .models import peeweeDB, DB, Article
 
 # 创建app实例
 app = Flask(__name__)
-app.config.from_object(Config) #配置app
+app.config.from_object({'DEBUG': env.DEBUG, 'SECRET_KEY': env.SECRET_KEY}) #配置app
 
 jwt = JWTManager(app) # 初始化jwt
 app.register_blueprint(view) #注册视图蓝图

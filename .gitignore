@@ -1,4 +1,6 @@
 venv
+venv/
+.venv/
 __pycache__
 **/__pycache__
 **.db
@@ -6,4 +8,4 @@ node_modules
 **/node_modules
 .vscode
 user.jpg
-config.py
+.env

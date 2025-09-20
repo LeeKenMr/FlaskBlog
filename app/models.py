@@ -1,18 +1,18 @@
 from peewee import PrimaryKeyField, CharField,DateTimeField,TextField
 from playhouse.pool import PooledPostgresqlDatabase # 引入Postgresql连接池
 from playhouse.flask_utils import FlaskDB # 引入flask-peewee
-from config import DataConfig #配置
+import env #配置
 from datetime import datetime 
 from peewee import fn
 
 # 配置连接池
 try:
     database = PooledPostgresqlDatabase(
-        database=DataConfig.name,
-        user=DataConfig.user,
-        password=DataConfig.password,
-        host=DataConfig.host,
-        port=DataConfig.port,
+        database=env.DATA_NAME,
+        user=env.DATA_USERNAME,
+        password=env.DATA_PASSWORD,
+        host=env.DATA_HOST,
+        port=env.DATA_PORT,
         max_connections=10,  # 设置最大连接数为10
         stale_timeout=5000  # 超时的连接被自动回收
     )

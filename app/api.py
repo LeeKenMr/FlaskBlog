@@ -1,6 +1,6 @@
 #一个蓝图模块，定义api，这里的所有路由前面都会加上/api
 from flask import Blueprint,request,jsonify
-from config import AdminConfig # 引入配置
+import env # 引入配置
 from flask_jwt_extended import create_access_token,jwt_required # 引入jwt
 from datetime import timedelta
 from peewee import IntegrityError # 打印数据库错误
@@ -18,7 +18,7 @@ def login():
     data = request.get_json()
     # 这里是判断验证码的其他逻辑
     
-    if data.get('name') != AdminConfig.username or data.get('password') != AdminConfig.password:
+    if data.get('name') != env.ADMIN_USERNAME or data.get('password') != env.ADMIN_PASSWORD:
         return jsonify({'msg': '用户名或密码错误'}), 400
 
     # 创建一个15天的token

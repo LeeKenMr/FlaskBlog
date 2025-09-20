@@ -2,7 +2,7 @@
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import os
-from config import WebConfig
+import env
 from ..models import Article
 # 单个URL的类
 class URL:
@@ -24,22 +24,22 @@ def sitemap():
     urls = []
     
     # 加入单独页
-    urls.append(URL(WebConfig.host, "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/go/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/py/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/qd/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/uni/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/db/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/ser/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/ai/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/chain/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/type/tools/1', "2024-03-28", "monthly", 0.6))
-    urls.append(URL(f'{WebConfig.host}/us', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(env.WEB_URL, "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/go/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/py/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/qd/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/uni/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/db/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/ser/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/ai/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/chain/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/type/tools/1', "2024-03-28", "monthly", 0.6))
+    urls.append(URL(f'{env.WEB_URL}/us', "2024-03-28", "monthly", 0.6))
     # 获取所有文章
     articles = Article.select()
     for article in articles:
         # 将文章的URL加入到列表中
-        urls.append(URL(f'{WebConfig.host}/note/{article.id}', article.created_at.strftime("%Y-%m-%d"), "monthly", 0.8))
+        urls.append(URL(f'{env.WEB_URL}/note/{article.id}', article.created_at.strftime("%Y-%m-%d"), "monthly", 0.8))
     # 合成成最终的sitemap文本
     sitemap = Sitemap("http://www.sitemaps.org/schemas/sitemap/0.9", urls)
     root = ET.Element("urlset", xmlns=sitemap.xmlns)
