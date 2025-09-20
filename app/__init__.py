@@ -8,7 +8,9 @@ from .models import peeweeDB, DB, Article
 
 # 创建app实例
 app = Flask(__name__)
-app.config.from_object({'DEBUG': env.DEBUG, 'SECRET_KEY': env.SECRET_KEY}) #配置app
+app.config['SECRET_KEY'] = env.SECRET_KEY
+app.config['DEBUG'] = env.DEBUG
+
 
 jwt = JWTManager(app) # 初始化jwt
 app.register_blueprint(view) #注册视图蓝图

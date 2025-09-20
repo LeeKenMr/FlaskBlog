@@ -6,76 +6,285 @@
 {% block content %}
 <style>
     .markedwon h1 {
-        font-weight: 550;
-        font-size: 1.6em;
+        font-weight: 600;
+        font-size: 2rem;
+        line-height: 1.25;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #1a1a1a;
+        border-bottom: 1px solid #e1e5e9;
+        padding-bottom: 0.3rem;
     }
     
     .markedwon h2 {
-        font-weight: 550;
-        font-size: 1.4em;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 1.25;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: #1a1a1a;
     }
     
     .markedwon h3 {
-        font-weight: 550;
-        font-size: 1.2em;
+        font-weight: 600;
+        font-size: 1.25rem;
+        line-height: 1.25;
+        margin-top: 1.2rem;
+        margin-bottom: 0.6rem;
+        color: #1a1a1a;
     }
     
     .markedwon h4 {
-        font-weight: 550;
-        font-size: 1em;
+        font-weight: 600;
+        font-size: 1.1rem;
+        line-height: 1.25;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        color: #1a1a1a;
     }
     
     .markedwon a {
         color: rgb(53, 101, 233);
     }
     
+    /* 段落样式 */
+    .markedwon p {
+        line-height: 1.8;
+        margin-top: 0;
+        margin-bottom: 1.2rem;
+        color: #333;
+    }
+    
+    /* 列表样式 */
+    .markedwon ul, .markedwon ol {
+        margin-top: 0;
+        margin-bottom: 1.2rem;
+        padding-left: 2rem;
+        line-height: 1.8;
+    }
+    
     .markedwon ul li {
         list-style-type: disc;
-        margin-left: 1.5em;
+        margin-bottom: 0.7rem;
+        color: #333;
     }
     
-    /* p标签间距，排除blockquote下的p标签 */
-    .markedwon p:not(blockquote p) {
-        margin-top: 1em;
-        margin-bottom: 1em;
+    .markedwon ol li {
+        margin-bottom: 0.7rem;
+        color: #333;
     }
     
-    /* > 的样式 */
+    /* 引用块样式 */
     .markedwon blockquote {
-        margin-top: 1em;
-        margin-bottom: 1em;
-        margin-right: 1em;
-        padding-left: 1em;
-        padding-top: 4px;
-        padding-bottom: 4px;
-        border-left: 3px solid rgb(182, 204, 241);
-        background-color: rgb(230, 230, 230);
+        margin: 1.5rem 0;
+        padding: 1rem 1.5rem;
+        border-left: 4px solid #dfe2e5;
+        background-color: #f6f8fa;
+        color: #6a737d;
+        font-style: italic;
+    }
+    
+    .markedwon blockquote p {
+        margin: 0;
+        color: inherit;
     }
     
     
-    /* 自定义` `的样式 */
+    /* 自定义行内代码的样式 */
     .markedwon code:not(pre code) {
-        display: inline-flex;
-        align-items: center;
-        border-radius: 0.375rem;
-        background-color: #f3f0eb;
-        padding-left: 0.25rem;
-        padding-right: 0.25rem;
-        padding-top: 0.2rem;
-        padding-bottom: 0.2rem;
-        margin-left: 0.3rem;
-        margin-right: 0.3rem;
-        font-size: 14px;
-        line-height: 1rem;
-        font-weight: 500;
-        color: rgb(75 85 99 / var(--tw-text-opacity));
+        display: inline;
+        background-color: #f6f8fa;
+        border: 1px solid #e1e5e9;
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        margin: 0 0.1em;
+        font-size: 0.9em;
+        font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+        color: #24292e;
     }
     /* 设置代码块的样式 */
     .markedwon pre {
-      border-radius: 0.8rem; /* 设置圆角 */
+        background-color: #f8f8f8; /* 灰白色背景 */
+        border: 1px solid #e1e5e9;
+        border-radius: 0; /* 去掉圆角 */
+        padding: 1rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        position: relative; /* 为复制按钮定位 */
+    }
+    
+    /* 代码块复制按钮样式 */
+    .code-copy-btn {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        background-color: #f6f8fa;
+        border: 1px solid #d1d9e0;
+        border-radius: 4px;
+        padding: 0.2rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        font-size: 0.8rem;
+        color: #586069;
+        z-index: 10;
+    }
+    
+    .code-copy-btn:hover {
+        background-color: #e1e5e9;
+        color: #24292e;
+    }
+    
+    .markedwon pre:hover .code-copy-btn {
+        opacity: 1;
+    }
+    
+    .code-copy-btn.copied {
+        background-color: #28a745;
+        color: white;
+        border-color: #28a745;
+    }
+    
+    .markedwon pre code {
+        background-color: transparent;
+        color: #24292e;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+    }
+    
+    /* 代码语法高亮颜色优化 */
+    .markedwon pre .token.comment,
+    .markedwon pre .token.prolog,
+    .markedwon pre .token.doctype,
+    .markedwon pre .token.cdata {
+        color: #6a737d;
+        font-style: italic;
+    }
+    
+    .markedwon pre .token.punctuation {
+        color: #586069;
+    }
+    
+    .markedwon pre .token.property,
+    .markedwon pre .token.tag,
+    .markedwon pre .token.boolean,
+    .markedwon pre .token.number,
+    .markedwon pre .token.constant,
+    .markedwon pre .token.symbol,
+    .markedwon pre .token.deleted {
+        color: #005cc5;
+    }
+    
+    .markedwon pre .token.selector,
+    .markedwon pre .token.attr-name,
+    .markedwon pre .token.string,
+    .markedwon pre .token.char,
+    .markedwon pre .token.builtin,
+    .markedwon pre .token.inserted {
+        color: #032f62;
+    }
+    
+    .markedwon pre .token.operator,
+    .markedwon pre .token.entity,
+    .markedwon pre .token.url,
+    .markedwon pre .language-css .token.string,
+    .markedwon pre .style .token.string {
+        color: #d73a49;
+    }
+    
+    .markedwon pre .token.atrule,
+    .markedwon pre .token.attr-value,
+    .markedwon pre .token.keyword {
+        color: #d73a49;
+    }
+    
+    .markedwon pre .token.function,
+    .markedwon pre .token.class-name {
+        color: #6f42c1;
+    }
+    
+    .markedwon pre .token.regex,
+    .markedwon pre .token.important,
+    .markedwon pre .token.variable {
+        color: #e36209;
     }
     </style>
-        <div class="mx-auto max-w-7xl px-0 lg:px-8 markedwon">
+        <div class="mx-auto max-w-4xl px-4 lg:px-8 markedwon">
             {{data.content | safe}}
         </div>
+        
+        <script>
+        // 为所有代码块添加复制按钮
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlocks = document.querySelectorAll('.markedwon pre');
+            
+            codeBlocks.forEach(function(pre) {
+                // 创建复制按钮
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'code-copy-btn';
+                copyBtn.textContent = '复制';
+                copyBtn.setAttribute('aria-label', '复制代码');
+                
+                // 添加复制功能
+                copyBtn.addEventListener('click', function() {
+                    const code = pre.querySelector('code');
+                    const text = code ? code.textContent : pre.textContent;
+                    
+                    // 使用现代剪贴板API
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            showCopySuccess(copyBtn);
+                        }).catch(function(err) {
+                            console.error('复制失败:', err);
+                            fallbackCopyTextToClipboard(text, copyBtn);
+                        });
+                    } else {
+                        // 降级方案
+                        fallbackCopyTextToClipboard(text, copyBtn);
+                    }
+                });
+                
+                // 将按钮添加到代码块
+                pre.appendChild(copyBtn);
+            });
+        });
+        
+        // 显示复制成功状态
+        function showCopySuccess(btn) {
+            const originalText = btn.textContent;
+            btn.textContent = '已复制';
+            btn.classList.add('copied');
+            
+            setTimeout(function() {
+                btn.textContent = originalText;
+                btn.classList.remove('copied');
+            }, 2000);
+        }
+        
+        // 降级复制方案
+        function fallbackCopyTextToClipboard(text, btn) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showCopySuccess(btn);
+                } else {
+                    console.error('复制失败');
+                }
+            } catch (err) {
+                console.error('复制失败:', err);
+            }
+            
+            document.body.removeChild(textArea);
+        }
+        </script>
 {% endblock %}
