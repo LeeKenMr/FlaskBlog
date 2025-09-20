@@ -24,9 +24,27 @@ def type(type,page=1):
     total = Article.select().where(Article.type==type).count()
     # 计算总页数
     total_page = total // per_page if total % per_page == 0 else total // per_page + 1
-
+    # 设置标题
+    if type == 'go':
+        title = 'Golang'
+    elif type == 'py':
+        title = 'Python'
+    elif type == 'qd':
+        title = '前端'
+    elif type == 'uni':
+        title = 'uni-app'
+    elif type == 'db':
+        title = '数据库'
+    elif type == 'ser':
+        title = '运维部署'
+    elif type == 'ai':
+        title = '人工智能'
+    elif type == 'chain':
+        title = '区块链'
+    elif type == 'tools':
+        title = '工具软件'
     # 返回模板渲染后的HTML页面，文章列表、页码总页数
-    return render_template('lists.html',datas=datas,page=page,total_page=total_page,type=type),200
+    return render_template('lists.html',datas=datas,page=page,total_page=total_page,type=type,title=title),200
 
 # 搜索页
 @view.route('/so',methods=['GET'])
@@ -62,3 +80,8 @@ def id(id):
 @view.route('/us',methods=['GET'])
 def us():
     return render_template('us.html'),200
+
+# 博文章页
+@view.route('/chat',methods=['GET'])
+def chat():
+    return render_template('chat.html'),200

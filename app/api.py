@@ -5,14 +5,10 @@ from flask_jwt_extended import create_access_token,jwt_required # 引入jwt
 from datetime import timedelta
 from peewee import IntegrityError # 打印数据库错误
 from .models import Article
+from .common.sitemap import sitemap
 
 api = Blueprint('api', __name__,url_prefix='/api')
 
-
-#定义一个api
-@api.route('/hello')
-def index():
-    return '{"msg":"Hello,API"}',200
 
 
 #定义一个post方法,接收josn，并返回接收到的json
@@ -91,4 +87,13 @@ def delete():
         return jsonify({'msg': f'成功删除{del_article}条数据'}),200
     except IntegrityError as e:
         return jsonify({'msg': f'删除失败:{e}'}),500
+    
+
+@api.route('/sitemap',methods=['GET'])
+@jwt_required()
+def setsitemap():
+    sitemap()
+    return jsonify({'msg': '生成成功'}),200
+
+
     

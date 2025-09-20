@@ -33,10 +33,12 @@ class Article(peeweeDB.Model):
     preview = CharField() #预览
     type = CharField(max_length=20) #类型
     created_at = DateTimeField(default=datetime.now) #创建时间
+    updated_at = DateTimeField(default=datetime.now) #更新时间
 
     #这里用于每次保存内容时，自动截取预览内容
     def save(self, *args, **kwargs):
         self.preview = fn.SUBSTR(self.markdown, 1, 220)  #存储文章预览120字
+        self.updated_at = datetime.now() # 更新时间
         return super().save(*args, **kwargs)
 
 # 获取数据库实例
