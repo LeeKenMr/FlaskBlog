@@ -1,12 +1,100 @@
-{% extends "base.html" %}
-{% block title %}关于大木编程{% endblock %}
-{% block content %}
-<div class="mx-auto px-3 lg:px-8 flex flex-col items-center max-w-xl">
-      <img class="h-24 w-24 rounded-full bg-gray-50" src="/static/user.jpg" alt="">
-      <span class="mt-3 leading-6 font-semibold" aria-hidden="true">大木</span>
-      <p class="mt-6 text-gray-500 leading-loose border-b border-gray-300">Python、Go、Js、C++、FastAPI、LangChain、Dify、Linux、Vue3、React Native Expo、Cursor、Celery、Gin、Django、Flask、Uni-app、TailwindCSS、Git、Docker、PostgreSQL、MongoDB、Redis、ORM、Deepseek、Qwen、Ollama、CosyVoice、Yolo-v5、Nginx、FreeRTOS<br>
-      </p>
-      <p class="mt-6 text-gray-500">邮箱：drweb.co@gmail.com<br>
-        小飞机：@samliminer</p>
-</div>
-{% endblock %}
+<html>
+  <head>
+    <title>关于木小良</title>
+  </head>
+    
+  <body style="background-color:black;font-family:courier;color:#05fa0d;">
+    <span id="content"></span><span id="cursor" style="height:30px;width:30px;background-color:#05fa0d;">&nbsp;</span>
+    <script>
+      var menu = [
+          " ",
+          " ",
+          "all in AI，我笃定它就是未来趋势:)",
+          " ",
+          " ",
+          "  [大模型应用开发]",
+          "     • LangChain / Dify",
+          "     • LLaMA-Factory - 微调模型",
+          "     • vllm / Ollama - 私有化部署",
+          "     • LightRAG - 基于图的RAG架构",
+          " ",
+          "  [深度学习 & 计算机视觉]",
+          "     • PyTorch / CUDA",
+          "     • YOLOv5 - 目标检测",
+          "     • OpenCV - 图像处理",
+          "     • Stable-Baselines",
+          " ",
+          "  [硬件 & 嵌入式]",
+          "     • ESP-IDF (ESP32)",
+          "     • Arduino",
+          "     • C++ 编程",
+          "     • 熟悉Linux开发环境",
+          " ",
+          "  [Web全栈]",
+          "     • Go - Gin",
+          "     • Python - FastAPI / Flask / Django",
+          "     • PostgreSQL",
+          "     • MongoDB",
+          "     • Redis",
+          "     • Vue3",
+          "     • Uni-app",
+          "     • TailwindCSS",
+          "     • Playwright",
+          "     • Docker",
+          "     • Nginx",
+          "     • Git",
+          "     • 熟悉常用云服务平台后台",
+          " ",
+        "  [NVIDIA证书]",
+        "     • CUDA C++加速",
+        "     • 深度学习入门",
+          ".........................",
+          " ",
+          "谁掌控过去，谁就掌控未来；谁掌控现在，谁就掌控过去 - 一九八四",
+          " ",
+          "drweb.co@gmail.com",
+        ],
+        i = 1, j, item, html,
+        e = document.getElementById("content"),
+        doChar = function() {
+          e.innerHTML += item[j++];
+          if (j < item.length) {
+            setTimeout(doChar, 55);
+          }
+          else {
+            e.innerHTML += "<br/>";
+            doItem();
+          }
+        },
+        doItem = function() {
+          if (i < menu.length) {
+            item = menu[i++];
+            j = 0;
+            doChar();
+          } else {
+            // 打印完成后，移除光标
+            document.getElementById("cursor").style.display = "none";
+            // 将证书名称替换为超链接
+            e.innerHTML = e.innerHTML.replace(
+              "CUDA C++加速",
+              '<a href="https://learn.nvidia.com/certificates?id=yVe9YsB_QRG4hjSdzIR2AQ" target="_blank" style="color:#05fa0d;text-decoration:underline;">CUDA C++加速</a>'
+            );
+            e.innerHTML = e.innerHTML.replace(
+              "深度学习入门",
+              '<a href="https://learn.nvidia.com/certificates?id=APbmtaEZRZCCjLL3jK-p4w" target="_blank" style="color:#05fa0d;text-decoration:underline;">深度学习入门</a>'
+            );
+            // 显示像素风格的返回首页按钮
+            var btn = document.createElement("a");
+            btn.href = "http://www.usmm.cn";
+            btn.innerText = "[ 返回首页 ]";
+            btn.style.cssText = "display:inline-block;margin-top:10px;padding:8px 16px;color:#05fa0d;background:#000;border:3px solid #05fa0d;font-family:courier;font-size:16px;text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 #05fa0d;";
+            btn.onmouseover = function() { this.style.background = "#05fa0d"; this.style.color = "#000"; };
+            btn.onmouseout = function() { this.style.background = "#000"; this.style.color = "#05fa0d"; };
+            document.body.appendChild(document.createElement("br"));
+            document.body.appendChild(btn);
+          }
+        };
+      doItem();
+    </script>
+  </body>
+</html>

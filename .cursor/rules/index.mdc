@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+- 前端始终保持对SEO友好
+- 前端样式，尽可能多使用tailwindcss，而非css
+- 前端排版布局使用响应式、移动端优先

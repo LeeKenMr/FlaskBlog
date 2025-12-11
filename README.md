@@ -1,15 +1,15 @@
 # flask简易博客
 
 - 响应式tailwindcss，前端使用SSR渲染对搜索引擎友好
-- 数据库:PostgreSQL+peewee
+- 数据库:PostgreSQL+SQLAlchemy
 
 ## 使用到的环境
 数据库:`sudo apt-get install postgresql-14`
 需要pip安装的python包:
 - flask
 - Flask-JWT-Extended
-- peewee
-- psycopg2-binary
+- flask-sqlalchemy
+- "psycopg[binary]"
 - gunicorn
 
 
@@ -37,7 +37,7 @@
  ┃ ┃ ┗ index.html       #首页模板
  ┃ ┣ static             #静态文件
  ┃ ┣ __init__.py        #初始化app实列
- ┃ ┣ models.py          #peewee模型
+┃ ┣ models.py          #SQLAlchemy模型
  ┃ ┣ views.py           #视图路由
  ┃ ┗ api.py             #api路由
  ┣ vue                  #后台管理
@@ -119,7 +119,3 @@ www.abc.cn {
 `sudo systemctl disable blog`   禁止自启动
 
 `sudo journalctl -u blog.service -r` 查看错误
-
-
-
-

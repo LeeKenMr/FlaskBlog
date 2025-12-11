@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{data.title}} - 大木编程{% endblock %}
+{% block title %}{{data.title}} - 木小良{% endblock %}
 {% block css %}
 <link href="/static/prism.min.css" rel="stylesheet">
 {% endblock %}
@@ -208,6 +208,41 @@
     .markedwon pre .token.important,
     .markedwon pre .token.variable {
         color: #e36209;
+    }
+    
+    /* 表格样式 */
+    .markedwon table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+        overflow: hidden;
+        border: 1px solid #e1e5e9;
+    }
+    
+    .markedwon table thead {
+        background-color: #f6f8fa;
+    }
+    
+    .markedwon table th {
+        font-weight: 600;
+        text-align: left;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e1e5e9;
+        color: #24292e;
+    }
+    
+    .markedwon table td {
+        padding: 0.75rem 1rem;
+        border: 1px solid #e1e5e9;
+        color: #333;
+    }
+    
+    .markedwon table tbody tr:hover {
+        background-color: #f6f8fa;
+    }
+    
+    .markedwon table tbody tr:nth-child(even) {
+        background-color: #fafbfc;
     }
     </style>
         <div class="mx-auto max-w-4xl px-4 lg:px-8 markedwon">

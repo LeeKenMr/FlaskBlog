@@ -1,46 +1,52 @@
-from peewee import PrimaryKeyField, CharField,DateTimeField,TextField
-from playhouse.pool import PooledPostgresqlDatabase # 引入Postgresql连接池
-from playhouse.flask_utils import FlaskDB # 引入flask-peewee
-import env #配置
-from datetime import datetime 
-from peewee import fn
+"""
+数据模型模块
+使用 Flask-SQLAlchemy 定义数据库模型
+"""
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-# 配置连接池
-try:
-    database = PooledPostgresqlDatabase(
-        database=env.DATA_NAME,
-        user=env.DATA_USERNAME,
-        password=env.DATA_PASSWORD,
-        host=env.DATA_HOST,
-        port=env.DATA_PORT,
-        max_connections=10,  # 设置最大连接数为10
-        stale_timeout=5000  # 超时的连接被自动回收
-    )
-except Exception as e:
-    print("程序停止,数据库连接失败:", e)
-    raise SystemExit(e)  # 暂停程序
-
-# 将peewee集成到flask中
-peeweeDB = FlaskDB(database=database)
+# 创建 SQLAlchemy 实例
+db = SQLAlchemy()
 
 
-# 定义模型
-class Article(peeweeDB.Model):
-    id = PrimaryKeyField()
-    title = CharField(max_length=250) #标题
-    content = TextField() #html内容
-    markdown = TextField() #markdown格式
-    preview = CharField() #预览
-    type = CharField(max_length=20) #类型
-    created_at = DateTimeField(default=datetime.now) #创建时间
-    updated_at = DateTimeField(default=datetime.now) #更新时间
+class Article(db.Model):
+    """
+    文章模型
 
-    #这里用于每次保存内容时，自动截取预览内容
-    def save(self, *args, **kwargs):
-        self.preview = fn.SUBSTR(self.markdown, 1, 220)  #存储文章预览120字
-        self.updated_at = datetime.now() # 更新时间
-        return super().save(*args, **kwargs)
+    Attributes:
+        id: 主键ID
+        title: 文章标题
+        content: HTML内容
+        markdown: Markdown格式内容
+        preview: 预览内容（自动截取）
+        type: 文章类型
+        created_at: 创建时间
+        updated_at: 更新时间
+    """
+    __tablename__ = 'article'
 
-# 获取数据库实例
-DB = peeweeDB.database
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String(250), nullable=False)  # 标题
+    content = db.Column(db.Text, nullable=False)  # HTML内容
+    markdown = db.Column(db.Text, nullable=False)  # Markdown格式
+    preview = db.Column(db.String(255), default='')  # 预览
+    type = db.Column(db.String(20), nullable=False)  # 类型
+    created_at = db.Column(db.DateTime, default=datetime.now)  # 创建时间
+    updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)  # 更新时间
 
+    def save(self):
+        """
+        保存文章，自动截取预览内容
+
+        Returns:
+            Article: 当前文章实例
+        """
+        # 存储文章预览220字
+        self.preview = self.markdown[:220] if self.markdown else ''
+        self.updated_at = datetime.now()
+        db.session.add(self)
+        db.session.commit()
+        return self
+
+    def __repr__(self):
+        return f'<Article {self.id}: {self.title}>'
